@@ -5,7 +5,8 @@ const petsModule = (function() {
             type: "Golden Retriever/St. Bernard Mix",
             sound: "bark",
             key: "b",
-            soundText: "Bark - type b || B"
+            soundText: "Bark - Type 'b' or 'B'",
+            bgcolor: "red"
         },
         {
             image: "https://pet-uploads.adoptapet.com/0/f/3/462356648.jpg",
@@ -13,17 +14,27 @@ const petsModule = (function() {
             type: "Domestic Shorthair",
             sound: "meow",
             key: "m",
-            soundText: "Meow - type m || M"
+            soundText: "Meow - type 'm' or 'M'",
+            bgcolor: "blue"
         }
     ];
     const $tbodyEl = document.querySelector("tbody");
+    const $mainImage = document.querySelector(".main-image");
 
-    const getButtons = function() {
+    const getPetButtons = function() {
         return document.querySelectorAll("button");
     }
 
+    function getPetRows() {
+        return document.querySelectorAll('.pet');
+    }
+
+    function getPetByIndex(index) {
+        return _data[index];
+    }
+
     const createPetElement = function(pet) {
-        return `<tr><td><img class="pet-image" src="${pet.image}"/></td><td>${pet.name}</td><td>${pet.type}</td><td><button data-sound="${pet.sound}">${pet.soundText}</button></td></tr>`;
+        return `<tr class="pet"><td><img class="pet-image" src="${pet.image}"/></td><td>${pet.name}</td><td>${pet.type}</td><td><button data-sound="${pet.sound}">${pet.soundText}</button></td></tr>`;
     };
 
     const createPetSoundElement = function(pet) {
@@ -52,6 +63,25 @@ const petsModule = (function() {
         }
     }
 
+    function clearPetRowBackgroundColors() {
+        getPetRows().forEach(($row) => {
+            $row.setAttribute('style', 'background-color: none');
+        });
+    }
+
+    function changeBackgroundColorByPet($pet, $row) {
+        clearPetRowBackgroundColors();
+        if ($pet.bgcolor) {
+            $row.setAttribute('style', `background-color: ${$pet.bgcolor}`);
+        }
+    }
+
+    function changeMainImagebyPet($pet) {
+        if ($pet.image) {
+            $mainImage.setAttribute('src', $pet.image);
+        }
+    }
+
     function bindKeyDownEvents() {
         _data.forEach((petElement) => {
             document.addEventListener('keydown', function(event) {
@@ -62,10 +92,21 @@ const petsModule = (function() {
         });
     }
 
+    function bindRowClickEvents() {
+        const $rows = getPetRows();
+        $rows.forEach(($row, index) => {
+            $row.addEventListener('click', function() {
+                const $currentPet = getPetByIndex(index);
+                changeBackgroundColorByPet($currentPet, $row);
+                changeMainImagebyPet($currentPet);
+            });
+        });
+    }
     const bindButtonEvents = function() {
-        const buttons = getButtons();
-        buttons.forEach((button) => {
+        const $buttons = getPetButtons();
+        $buttons.forEach((button) => {
             button.addEventListener("click", function(event) {
+                event.stopPropagation();
                 playSoundById(this.dataset.sound);
             });
         })
@@ -74,8 +115,9 @@ const petsModule = (function() {
     const init = function() {
         putPetsInHtml();
         putPetSoundsInHtml();
-        bindKeyDownEvents()
+        bindKeyDownEvents();
         bindButtonEvents();
+        bindRowClickEvents();
     }
 
     return {
