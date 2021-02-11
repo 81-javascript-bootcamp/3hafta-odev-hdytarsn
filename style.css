@@ -13,25 +13,30 @@ body {
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
-.css-changer {
+.top-row {
     margin-bottom: 25px;
     display: flex;
-    align-items: center;
-    justify-content: flex-end;
+    justify-content: space-between
 }
 
-.css-changer>input {
+.top-row>div {
+    display: flex;
+    align-items: center;
+}
+
+.top-row input {
     height: 18px;
     width: 18px;
     padding-right: 10px;
 }
 
-.css-changer>label {
+.top-row label {
     padding-left: 5px;
 }
 
 .clicked-btn {
     background: #e96806 !important;
+    transform: scale(1.04);
 }
 
 .custom-css {
