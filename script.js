@@ -6,7 +6,7 @@ const petsModule = (function() {
             sound: "bark",
             key: "b",
             soundText: "Bark - Type 'b' or 'B'",
-            bgcolor: "red"
+            bgcolor: "#9C4C52"
         },
         {
             image: "https://pet-uploads.adoptapet.com/0/f/3/462356648.jpg",
@@ -15,8 +15,27 @@ const petsModule = (function() {
             sound: "meow",
             key: "m",
             soundText: "Meow - type 'm' or 'M'",
-            bgcolor: "blue"
+            bgcolor: "#9B7056"
+        },
+        {
+            image: "https://i.pinimg.com/originals/92/0f/a9/920fa9b50993ffb0f13dce1706781c6b.jpg",
+            name: "Barney",
+            type: "Hollywood Sheep",
+            sound: "mee",
+            key: "e",
+            soundText: "Eee - type 'e' or 'E'",
+            bgcolor: "#515E76"
+        },
+        {
+            image: "https://i2.wp.com/theverybesttop10.com/wp-content/uploads/2020/06/Ten-of-the-Most-Interesting-Frog-Species-From-Around-The-World.jpg?fit=600%2C400&ssl=1",
+            name: "George",
+            type: "Slug Frog",
+            sound: "grug",
+            key: "g",
+            soundText: "Grug - type 'g' or 'G'",
+            bgcolor: "#637865"
         }
+
     ];
     const htmlBody = document.querySelector("body");
     const $tbodyEl = document.querySelector("tbody");
