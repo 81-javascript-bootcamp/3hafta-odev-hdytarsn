@@ -11,3 +11,73 @@ body {
     width: 30px;
     height: 30px;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+.css-changer {
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.css-changer>input {
+    height: 18px;
+    width: 18px;
+    padding-right: 10px;
+}
+
+.css-changer>label {
+    padding-left: 5px;
+}
+
+.clicked-btn {
+    background: #e96806 !important;
+}
+
+.custom-css {
+    background: #eeeeee;
+    font-family: 'Poppins', sans-serif !important;
+}
+
+.custom-css button {
+    background: #e99414;
+    color: #fff;
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    padding: 5px 10px;
+    transition: all .5s;
+    outline: none;
+}
+
+.custom-css button:hover {
+    background: #e96806;
+}
+
+.custom-css img {
+    border-radius: 5px;
+}
+
+.custom-css .main-image {
+    border-radius: 5px;
+    height: 250px;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.custom-css thead>tr>th:nth-child(4) {
+    text-align: center;
+}
+
+.custom-css td {
+    vertical-align: middle;
+}
+
+.custom-css tr {
+    transition: all .5s;
+}
+
+.custom-css tbody>tr:hover {
+    transform: scale(1.02);
+}

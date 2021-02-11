@@ -18,6 +18,7 @@ const petsModule = (function() {
             bgcolor: "blue"
         }
     ];
+    const htmlBody = document.querySelector("body");
     const $tbodyEl = document.querySelector("tbody");
     const $mainImage = document.querySelector(".main-image");
 
@@ -60,6 +61,8 @@ const petsModule = (function() {
         const $soundElement = document.getElementById(id);
         if ($soundElement) {
             $soundElement.play();
+            const soundButton = document.querySelector('button[data-sound=' + id + ']');
+            setClickedButtonClass(soundButton);
         }
     }
 
@@ -80,6 +83,13 @@ const petsModule = (function() {
         if ($pet.image) {
             $mainImage.setAttribute('src', $pet.image);
         }
+    }
+
+    function setClickedButtonClass($button) {
+        $button.classList.add('clicked-btn');
+        setTimeout(() => {
+            $button.classList.remove('clicked-btn');
+        }, 1500);
     }
 
     function bindKeyDownEvents() {
@@ -112,6 +122,15 @@ const petsModule = (function() {
         })
     }
 
+    const customCssChanger = function() {
+        const checkbox = document.getElementById('css_changer');
+        checkbox.addEventListener('change', function(event) {
+            htmlBody.classList.toggle('custom-css');
+        });
+    }
+
+
+
     const init = function() {
         putPetsInHtml();
         putPetSoundsInHtml();
@@ -121,7 +140,9 @@ const petsModule = (function() {
     }
 
     return {
-        init: init
+        init: init,
+        customCssChanger: customCssChanger
     }
 })();
 petsModule.init();
+petsModule.customCssChanger();
